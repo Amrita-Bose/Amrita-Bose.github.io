@@ -4,7 +4,7 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://bsobhan.github.io',
+  site: 'https://Amrita-Bose.github.io',
   devToolbar: {
     enabled: false
   },
