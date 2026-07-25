@@ -247,12 +247,16 @@ export const conferences: ConferenceEntry[] = [
   {
     event: "INDOCRYPT 2024, 25th International Conference on Cryptology in India",
     location: "Chennai, Tamil Nadu, India",
-    dates: "December 18–21, 2024"
+    dates: "December 18–21, 2024",
+    authors: "Amrita Bose, Debranjan Pal, Dipanwita Roy Chowdhury",
+    paperTitle: "Deep Learning-Based Differential Distinguishers for Cryptographic Sequences"
   },
   {
     event: "ATIS 2024, 14th International Conference on Applications and Techniques in Information Security",
     location: "Thanjavur, Tamil Nadu, India",
-    dates: "November 22–23, 2024"
+    dates: "November 22–23, 2024",
+    authors: "Amrita Bose, Debranjan Pal, Dipanwita Roy Chowdhury",
+    paperTitle: "Cryptographic Distinguishers Through Deep Learning for Lightweight Block Ciphers"
   },
   {
     event: "CCSS 2025 (CREST Crypto Summer School)",
