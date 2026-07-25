@@ -1,0 +1,22 @@
+---
+// src/components/SectionHeader.astro
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+
+<div class="relative flex items-center justify-center text-center py-8 sm:py-10 select-none no-print overflow-hidden w-full">
+  <!-- Ghost title in the background (very large, very low opacity, monospace) -->
+  <span 
+    data-parallax-header
+    class="absolute text-4xl sm:text-6xl md:text-7.5xl lg:text-8.5xl font-mono font-extrabold tracking-[0.2em] text-[#e87a5d]/20 dark:text-[#e87a5d]/12 select-none pointer-events-none z-0 whitespace-nowrap uppercase transition-transform duration-100 ease-out"
+    style="transform: translateX(var(--header-parallax-x, 0px))"
+  >
+    {title}
+  </span>
+  <!-- Main title in the foreground (orange, monospace, larger) -->
+  <h2 class="relative text-2xl sm:text-3.5xl md:text-4.5xl lg:text-5xl font-mono font-extrabold tracking-wide text-[#e87a5d] z-10">
+    {title}
+  </h2>
+</div>

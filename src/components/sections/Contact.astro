@@ -1,0 +1,61 @@
+---
+// src/components/sections/Contact.astro
+import Container from '../Container.astro';
+import { personal } from '../../data/content';
+import SectionHeader from '../SectionHeader.astro';
+---
+
+<section id="contact" class="py-20 sm:py-32 bg-transparent transition-colors duration-300 reveal-on-scroll">
+  <Container>
+    <div class="space-y-10 sm:space-y-12">
+      <!-- <SectionHeader title="Contact" /> -->
+      
+      <!-- Subtitle/Context -->
+      <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base font-medium tracking-wide">
+        Interested in a research collaboration or academic conversation?
+      </p>
+
+      <!-- Serif Core Heading -->
+      <h2 class="text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tight text-slate-900 dark:text-white font-serif leading-[1.1] sm:leading-[1.05]">
+        Let's start a <br />
+        <span class="text-[#e87a5d] italic font-normal">conversation.</span>
+      </h2>
+
+      <!-- Underlined Email Links matching the mockup -->
+      <div class="flex flex-col gap-6 sm:gap-8 pt-4">
+        <!-- Institutional Email Link -->
+        <div class="w-fit">
+          <a 
+            href={`mailto:${personal.emails.secondary}`}
+            class="email-link inline-flex items-center text-xl sm:text-2xl lg:text-3.5xl font-semibold text-slate-800 dark:text-white hover:text-violet-600 dark:hover:text-lime-300 transition-colors duration-200 border-b-2 border-violet-500/80 dark:border-lime-400/90 pb-1.5 focus:outline-none focus:ring-2 focus:ring-lime-400 focus:ring-offset-2 dark:focus:ring-offset-slate-950"
+          >
+            {personal.emails.secondary}
+            <span class="ml-2.5 text-violet-600 dark:text-lime-400 select-none">↗</span>
+          </a>
+        </div>
+
+        <!-- Primary Email Link -->
+        <div class="w-fit">
+          <a 
+            href={`mailto:${personal.emails.primary}`}
+            class="email-link inline-flex items-center text-xl sm:text-2xl lg:text-3.5xl font-semibold text-slate-800 dark:text-white hover:text-violet-600 dark:hover:text-lime-300 transition-colors duration-200 border-b-2 border-violet-500/80 dark:border-lime-400/90 pb-1.5 focus:outline-none focus:ring-2 focus:ring-lime-400 focus:ring-offset-2 dark:focus:ring-offset-slate-950"
+          >
+            {personal.emails.primary}
+            <span class="ml-2.5 text-violet-600 dark:text-lime-400 select-none">↗</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </Container>
+</section>
+
+<style>
+  /* Use Google's Playfair Display serif font for contact headline */
+  h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+  .email-link {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+</style>

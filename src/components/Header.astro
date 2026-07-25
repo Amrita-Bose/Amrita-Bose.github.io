@@ -1,0 +1,161 @@
+---
+// src/components/Header.astro
+const navLinks = [
+  { href: '#hero', label: 'Home' },
+  { href: '#about', label: 'About' },
+  { href: '#education', label: 'Education' },
+  { href: '#publications', label: 'Publications' },
+  { href: '#experience', label: 'Experience' },
+  { href: '#teaching', label: 'TAship' },
+  { href: '#engagements', label: 'Engagements' },
+  { href: '#contact', label: 'Contact' }
+];
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 py-4 sm:py-5 no-print bg-transparent">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+    
+    <!-- 1. Left Element: Logo Text (AB) -->
+    <a href="#" data-logo-decrypt aria-label="Scroll to top" class="font-extrabold text-2xl sm:text-3xl tracking-wider text-slate-800 dark:text-white hover:text-violet-600 dark:hover:text-violet-400 transition-colors focus:outline-none focus:ring-2 focus:ring-violet-500 rounded-lg px-1 py-0.5">
+      AB.
+    </a>
+
+    <!-- 2. Center Element: Pill Navigation Container (Desktop) -->
+    <nav aria-label="Main Navigation" class="relative hidden lg:flex items-center bg-white/15 dark:bg-slate-900/25 border border-white/20 dark:border-slate-800/40 px-2 py-1.5 rounded-full shadow-sm backdrop-blur-md transition-all duration-300">
+      <!-- Sliding indicator behind links -->
+      <div data-nav-indicator class="absolute bg-violet-600/10 dark:bg-violet-400/10 rounded-full transition-all duration-300 ease-out z-0 pointer-events-none opacity-0 shadow-sm"></div>
+      
+      <ul class="relative flex items-center gap-0.5 z-10">
+        {navLinks.map(link => (
+          <li>
+            <a 
+              href={link.href}
+              class="nav-link px-4 py-2 rounded-full text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/30 dark:hover:bg-slate-800/30 transition-all duration-200 block focus:outline-none focus:ring-2 focus:ring-violet-500/50"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- 3. Right Element: Theme Toggle + Capsule CTA Button / Hamburger -->
+    <div class="flex items-center gap-2">
+      <!-- Dark Mode Toggle Button (Desktop & Mobile) -->
+      <button 
+        data-theme-toggle
+        aria-label="Toggle dark mode"
+        class="w-11 h-11 flex items-center justify-center rounded-full bg-white/15 dark:bg-slate-900/25 border border-white/20 dark:border-slate-800/40 hover:bg-slate-50/40 dark:hover:bg-slate-800/40 hover:border-slate-300 dark:hover:border-slate-700 shadow-sm backdrop-blur-md transition-all duration-200 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-violet-500"
+      >
+        <!-- Sun Icon (visible in dark mode) -->
+        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707m12.728 12.728A9 9 0 115.636 5.636m12.728 12.728L12 12"></path>
+        </svg>
+        <!-- Moon Icon (visible in light mode) -->
+        <svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+        </svg>
+      </button>
+
+      <!-- Get in Touch Capsule Button (Desktop Only) -->
+      <a 
+        href="#contact"
+        class="hidden lg:inline-flex h-11 px-5 items-center justify-center rounded-full bg-white/15 dark:bg-slate-900/25 border border-white/20 dark:border-slate-800/40 hover:bg-slate-50/40 dark:hover:bg-slate-800/40 hover:border-slate-300 dark:hover:border-slate-700 hover:text-violet-600 dark:hover:text-violet-400 font-semibold text-sm shadow-sm backdrop-blur-md transition-all duration-200 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-violet-500"
+      >
+        <!-- Mail Icon -->
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+        </svg>
+        Get in Touch
+      </a>
+
+      <!-- Hamburger Menu Button (Mobile Only) -->
+      <button
+        data-hamburger
+        aria-expanded="false"
+        aria-label="Toggle navigation menu"
+        class="lg:hidden w-11 h-11 flex items-center justify-center rounded-full bg-white/15 dark:bg-slate-900/25 border border-white/20 dark:border-slate-800/40 hover:bg-slate-50/40 dark:hover:bg-slate-800/40 hover:border-slate-300 dark:hover:border-slate-700 shadow-sm backdrop-blur-md transition-all duration-200 text-slate-600 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-violet-500"
+      >
+        <!-- Closed state hamburger lines -->
+        <svg data-menu-icon="close" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+        <!-- Open state cross -->
+        <svg data-menu-icon="open" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Navigation Menu -->
+  <div 
+    data-nav-menu 
+    class="hidden lg:hidden absolute left-4 right-4 top-18 bg-white/80 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800/80 rounded-2xl shadow-lg p-3 mt-1.5 backdrop-blur-md slide-in-top"
+  >
+    <nav aria-label="Mobile Navigation">
+      <ul class="flex flex-col gap-1.5">
+        {navLinks.map(link => (
+          <li>
+            <a 
+              href={link.href}
+              class="mobile-nav-link px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-all block focus:outline-none focus:ring-2 focus:ring-violet-500/50"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  @reference "tailwindcss";
+
+  /* Header scroll effect shadow */
+  .header-scrolled {
+    @apply py-3 sm:py-3.5;
+  }
+  
+  /* Active navigation states styling matching user's design image */
+  .nav-link.active {
+    @apply text-violet-600 dark:text-violet-400 font-bold;
+  }
+  .mobile-nav-link.active {
+    @apply bg-violet-600/10 dark:bg-violet-400/10 text-violet-600 dark:text-violet-400 font-bold;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const header = document.querySelector('header');
+    if (!header) return;
+
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        header.classList.add('header-scrolled');
+      } else {
+        header.classList.remove('header-scrolled');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Run initially
+
+    // Defocus theme toggle, CTA button and hamburger menu after 700ms to fade out outline rings
+    function initHeaderAutoblur() {
+      const controls = document.querySelectorAll('[data-theme-toggle], header a[href="#contact"], [data-hamburger]');
+      controls.forEach(control => {
+        control.addEventListener('click', () => {
+          setTimeout(() => {
+            control.blur();
+          }, 700);
+        });
+      });
+    }
+
+    initHeaderAutoblur();
+    document.addEventListener('astro:page-load', initHeaderAutoblur);
+  });
+</script>

@@ -1,0 +1,40 @@
+---
+// src/components/sections/Engagements.astro
+import Container from '../Container.astro';
+import SectionHeader from '../SectionHeader.astro';
+import Conferences from './Conferences.astro';
+import AcademicService from './AcademicService.astro';
+import Awards from './Awards.astro';
+---
+
+<section id="engagements" class="py-16 sm:py-24 bg-transparent transition-colors duration-300 reveal-on-scroll">
+  <Container>
+    <div class="space-y-12">
+      <!-- Section Header -->
+      <SectionHeader title="Engagements" />
+      
+      <!-- Sub-sections stacked with premium line dividers -->
+      <div class="space-y-16 sm:space-y-20">
+        <!-- 1. Conferences & Presentations Subsection -->
+        <div>
+          <Conferences />
+        </div>
+
+        <hr class="border-t border-slate-200/40 dark:border-slate-800/40" />
+
+        <!-- 2. Academic Service Subsection -->
+        <div>
+          <AcademicService />
+        </div>
+
+        <hr class="border-t border-slate-200/40 dark:border-slate-800/40" />
+
+        <!-- 3. Awards & Accolades Subsection -->
+        <div>
+          <Awards />
+        </div>
+      </div>
+      
+    </div>
+  </Container>
+</section>

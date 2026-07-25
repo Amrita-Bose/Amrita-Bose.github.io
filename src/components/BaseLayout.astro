@@ -1,0 +1,94 @@
+---
+// src/components/BaseLayout.astro
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "Amrita Bose", 
+  description = "PhD Candidate in Computer Science & Engineering at IIT Kharagpur. Research focuses on security vulnerabilities in healthcare domain, implantable and wearable medical devices."
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/amrita_portfolio/favicon.svg" />
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  
+  <!-- Fonts from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+
+  <!-- No-flash dark mode script -->
+  <script is:inline>
+    (function() {
+      try {
+        const stored = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = stored === 'dark' || (!stored && (stored !== 'light' && prefersDark));
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (_) {}
+    })();
+  </script>
+</head>
+<body class="bg-gradient-to-b from-[#f2f2f5] via-[#fafafb] to-[#ececed] text-slate-900 dark:from-[#07090e] dark:via-[#090c15] dark:to-[#05060a] dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-300 antialiased selection:bg-violet-500 selection:text-white relative overflow-x-hidden">
+  <!-- Top Border Scroll Progress Indicator -->
+  <div data-scroll-indicator class="fixed top-0 left-0 h-[2.5px] bg-gradient-to-r from-violet-600 to-indigo-500 dark:from-violet-400 dark:to-indigo-400 z-[10000] w-0 transition-all duration-75 ease-out no-print"></div>
+
+  <!-- Interactive background grid + spotlight glow -->
+  <div class="bg-grid-interactive"></div>
+
+  <!-- Soft background radial glows for premium aesthetic depth -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-violet-400/5 dark:bg-violet-500/5 rounded-full blur-[120px]"></div>
+    <div class="absolute top-[40vh] left-0 w-[450px] h-[450px] bg-indigo-400/5 dark:bg-indigo-500/5 rounded-full blur-[100px]"></div>
+    <div class="absolute bottom-[20vh] right-10 w-[500px] h-[500px] bg-purple-400/5 dark:bg-purple-500/5 rounded-full blur-[120px]"></div>
+  </div>
+
+  <!-- Custom Floating Scrollbar (detached, thick pill-shape) -->
+  <div data-custom-scrollbar-track class="fixed right-3 sm:right-4 top-[15vh] bottom-[15vh] w-3.5 z-[9999] pointer-events-none transition-opacity duration-300 opacity-0 rounded-full bg-slate-300/20 dark:bg-slate-800/10 border border-slate-300/10 dark:border-slate-800/10 backdrop-blur-[2px] no-print px-[2px] py-1 flex items-start justify-center">
+    <div data-custom-scrollbar-thumb class="w-full bg-violet-600/35 hover:bg-violet-600/60 dark:bg-violet-400/25 dark:hover:bg-violet-400/55 rounded-full cursor-pointer pointer-events-auto transition-[opacity,background-color] duration-200 shadow-sm"></div>
+  </div>
+
+  <a href="#main-content" class="skip-link no-print">Skip to main content</a>
+  
+  <Header />
+  
+  <main id="main-content" class="flex-grow">
+    <slot />
+  </main>
+  
+  <Footer />
+  
+  <!-- Interactive scripts -->
+  <script>
+    import "../scripts/dark-mode.js";
+    import "../scripts/nav.js";
+    import "../scripts/observer.js";
+    import "../scripts/reveal.js";
+    import "../scripts/spotlight.js";
+    import "../scripts/copy-tooltip.js";
+    import "../scripts/nav-indicator.js";
+    import "../scripts/timeline.js";
+    import "../scripts/scrollbar.js";
+    import "../scripts/parallax.js";
+    import "../scripts/logo-decrypt.js";
+    import "../scripts/scroll-progress.js";
+    import "../scripts/smooth-scroll.js";
+  </script>
+</body>
+</html>

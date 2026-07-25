@@ -1,0 +1,81 @@
+---
+// src/components/Footer.astro
+import { personal } from '../data/content';
+
+// Auto last updated timestamp
+const buildDate = new Date();
+const formattedDate = buildDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+
+const currentYear = buildDate.getFullYear();
+---
+
+<footer class="w-full bg-transparent border-t border-slate-200 dark:border-slate-800/80 py-8 md:py-12 mt-auto no-print">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+    
+    <!-- 1. Left: Copyright & Last Updated -->
+    <div class="text-center md:text-left space-y-1 text-xs sm:text-sm text-slate-500 dark:text-slate-300 font-medium">
+      <p>
+        &copy; {currentYear} {personal.name}. All rights reserved.
+      </p>
+      <p class="text-[10px] sm:text-xs text-slate-400 dark:text-slate-300">
+        Last updated: {formattedDate}
+      </p>
+    </div>
+
+    <!-- 2. Center: Minimalist text profile links matching mockup -->
+    <div class="flex items-center gap-6 text-xs sm:text-sm font-semibold text-slate-500 dark:text-slate-300">
+      <a 
+        href={personal.urls.googleScholar} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        aria-label="Google Scholar profile"
+        class="hover:text-white transition-colors focus:outline-none focus:underline"
+      >
+        Google Scholar
+      </a>
+      <a 
+        href={personal.urls.dblp} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        aria-label="DBLP profile"
+        class="hover:text-white transition-colors focus:outline-none focus:underline"
+      >
+        DBLP
+      </a>
+      <a 
+        href={personal.urls.orcid} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        aria-label="ORCID profile"
+        class="hover:text-white transition-colors focus:outline-none focus:underline"
+      >
+        ORCID
+      </a>
+      <a 
+        href={personal.urls.linkedin} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        aria-label="LinkedIn profile"
+        class="hover:text-white transition-colors focus:outline-none focus:underline"
+      >
+        LinkedIn
+      </a>
+    </div>
+
+    <!-- 3. Right: Back to top link -->
+    <div class="text-center md:text-right">
+      <a 
+        href="#" 
+        aria-label="Scroll back to top" 
+        class="inline-flex items-center text-xs sm:text-sm font-semibold text-slate-500 hover:text-white transition-colors focus:outline-none focus:underline"
+      >
+        Back to top &uarr;
+      </a>
+    </div>
+
+  </div>
+</footer>

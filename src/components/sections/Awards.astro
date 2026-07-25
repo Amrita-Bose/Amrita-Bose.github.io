@@ -1,0 +1,58 @@
+---
+// src/components/sections/Awards.astro
+import Container from '../Container.astro';
+import { awards } from '../../data/content';
+---
+
+<div class="space-y-12">
+      <!-- Subsection Heading -->
+      <div class="space-y-3">
+        <h3 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+          Awards & Accolades
+        </h3>
+        <div class="h-1.5 w-16 bg-gradient-to-r from-violet-600 to-indigo-600 dark:from-violet-400 dark:to-indigo-400 rounded-full"></div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-6">
+        {awards.map((award) => (
+          <div class="glass-panel p-6 rounded-2xl space-y-4 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+            <!-- Decorative gradient ribbon on the left -->
+            <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-amber-500 to-yellow-500"></div>
+            
+            <div class="pl-2 space-y-3">
+              <div class="flex items-center gap-2 flex-wrap">
+                <!-- Award Tag -->
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
+                  </svg>
+                  Award
+                </span>
+                {award.year && (
+                  <span class="text-xs text-slate-500 dark:text-slate-300 font-semibold">{award.year}</span>
+                )}
+              </div>
+
+              <div class="space-y-1">
+                <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+                  {award.title}
+                </h3>
+                <p class="text-sm sm:text-base font-semibold text-slate-700 dark:text-slate-300">
+                  {award.event}, {award.location}
+                </p>
+              </div>
+
+              {award.paper && (
+                <div class="pt-3 border-t border-slate-100 dark:border-slate-800">
+                  <span class="text-xs sm:text-sm font-semibold text-slate-500 dark:text-slate-300 block mb-1">For Paper:</span>
+                  <p class="text-sm sm:text-base italic text-slate-800 dark:text-slate-200">
+                    "{award.paper}"
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>

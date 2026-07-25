@@ -1,0 +1,84 @@
+---
+// src/components/sections/Publications.astro
+import Container from '../Container.astro';
+import { publications } from '../../data/content';
+import { generateBibTeX } from '../../lib/utils';
+import SectionHeader from '../SectionHeader.astro';
+---
+
+<section id="publications" class="py-16 sm:py-24 bg-transparent transition-colors duration-300 reveal-on-scroll">
+  <Container>
+    <div class="space-y-12">
+      <SectionHeader title="Publications" />
+
+      <!-- Publications List -->
+      <div class="space-y-6">
+        {publications.map((pub) => {
+          // Highlight Amrita Bose's name in bold weight
+          const formattedAuthor = pub.author.replace(
+            'Amrita Bose',
+            '<strong class="font-bold text-slate-900 dark:text-white">Amrita Bose</strong>'
+          );
+
+          return (
+            <div class="glass-panel p-6 rounded-2xl flex flex-col md:flex-row md:items-start justify-between gap-6 shadow-sm hover:shadow-md transition-shadow">
+              
+              <!-- Content Area -->
+              <div class="space-y-3 flex-grow">
+                <!-- Icon Tag -->
+                <div class="flex items-center gap-2">
+                  <span class="inline-flex px-2.5 py-0.5 rounded-full text-xs font-semibold bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 border border-violet-200/50 dark:border-violet-800">
+                    Conference Paper
+                  </span>
+                </div>
+
+                <!-- Formatted Citation (authors, title, venue/booktitle, year, pages, publisher) -->
+                <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+                  <span set:html={formattedAuthor} />, 
+                  <span class="font-medium text-slate-900 dark:text-white">"{pub.title}"</span>, 
+                  <span class="italic">{pub.booktitle || pub.journal}</span>, 
+                  {pub.year}, 
+                  {pub.pages}, 
+                  {pub.publisher}.
+                </p>
+              </div>
+
+              <!-- Interactive Actions (Bounding boxes >= 44x44px for touch targets) -->
+              <div class="flex items-center gap-3 shrink-0 self-end md:self-start">
+                <!-- DOI Link Button -->
+                <a
+                  href={pub.doi}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open DOI link in new tab"
+                  class="w-11 h-11 flex items-center justify-center rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/80 hover:text-violet-600 dark:hover:text-violet-400 hover:border-violet-300 dark:hover:border-violet-800 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-violet-500"
+                >
+                  <!-- DOI Icon (Link shape) -->
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                  </svg>
+                </a>
+
+                <!-- Cite (BibTeX Copy) Button -->
+                <button
+                  data-bibtex-btn
+                  data-bibtex={generateBibTeX(pub)}
+                  class="h-11 px-5 inline-flex items-center justify-center rounded-xl bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 font-semibold text-sm border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-violet-500"
+                >
+                  <!-- Cite Icon (Quote mark) -->
+                  <svg class="w-4 h-4 mr-2 text-violet-500 dark:text-violet-400" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"></path>
+                  </svg>
+                  Cite
+                </button>
+              </div>
+
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </Container>
+</section>
+
+
