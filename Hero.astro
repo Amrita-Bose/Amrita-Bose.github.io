@@ -1,0 +1,224 @@
+---
+// src/components/sections/Hero.astro
+import { Image } from 'astro:assets';
+import { personal } from '../../data/content';
+import profileImg from '../../assets/profile.jpg';
+---
+
+<section id="hero" class="relative min-h-[92vh] flex items-center justify-center py-16 sm:py-24 bg-transparent transition-colors duration-300 overflow-hidden">
+  
+  <!-- Large, vibrant glow blobs in the background (similar to user's mockup) -->
+  <div class="absolute -top-20 -left-20 w-[450px] h-[450px] bg-teal-500/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+  <div class="absolute -bottom-20 -right-20 w-[550px] h-[550px] bg-rose-500/10 rounded-full blur-[140px] pointer-events-none z-0"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 text-center space-y-8 relative">
+    
+    <!-- Profile Image (centered, glowing border) -->
+    <div class="flex justify-center">
+      <div class="relative group">
+        <div class="absolute -inset-1 bg-gradient-to-r from-teal-500 to-rose-500 rounded-full blur opacity-40 group-hover:opacity-60 transition duration-1000 group-hover:duration-200"></div>
+        <div class="relative w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] rounded-full overflow-hidden border-2 border-slate-800 shadow-2xl bg-slate-900">
+          <Image 
+            src={profileImg} 
+            width={160} 
+            height={160} 
+            alt="Profile photo of Amrita Bose"
+            class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Intro and Name Heading -->
+    <div class="space-y-3">
+      <p class="font-mono text-teal-600 dark:text-teal-400 text-xs sm:text-sm tracking-widest uppercase">
+        Hello, I'm
+      </p>
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+        {personal.name}.
+      </h1>
+      
+      <!-- Subheading with animated typing effect -->
+      <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-600 dark:text-slate-300 min-h-[3.75rem] sm:min-h-0 flex flex-col sm:flex-row items-center justify-center sm:gap-2.5">
+        <span>I research</span>
+        <span class="text-rose-500 dark:text-rose-400">
+          <span data-typewriter></span><span class="animate-pulse font-normal">|</span>
+        </span>
+      </h2>
+    </div>
+
+    <!-- Info text blocks mapping exact requirements -->
+    <div class="max-w-3xl mx-auto space-y-4">
+      <p class="text-sm sm:text-base font-semibold text-slate-400 tracking-wide">
+        Pursuing PhD. <br />
+        Advised by {personal.advisor}<br />
+        <span class="text-slate-500 text-sm sm:text-sm font-medium block mt-1">
+          <br />Department of Computer Science and Engineering, Indian Institute of Technology Kharagpur, Kharagpur
+        </span>
+        <!-- <span class="block text-sm sm:text-sm font-medium text-slate-500 mt-1">Advised by {personal.advisor}</span> -->
+      </p>
+      
+      <p class="text-sm sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-normal max-w-2xl mx-auto">
+        {personal.researchTagline}
+      </p>
+    </div>
+
+    <!-- Call to Actions (Touch targets >= 44x44px) -->
+    <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+      <!-- Download CV Button -->
+      <a 
+        href="/amrita_portfolio/cv.pdf" 
+        download="Amrita_Bose_CV.pdf"
+        class="h-11 px-6 inline-flex items-center justify-center rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-violet-500"
+      >
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+        </svg>
+        Download CV
+      </a>
+      
+      <!-- Contact Email Button -->
+      <a 
+        href={`mailto:${personal.emails.primary}`}
+        class="h-11 px-6 inline-flex items-center justify-center rounded-xl bg-slate-900 text-slate-200 font-semibold text-sm border border-slate-800 hover:bg-slate-800 hover:border-slate-700 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-violet-500"
+      >
+        <svg class="w-4 h-4 mr-2 text-violet-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+        </svg>
+        Contact Email
+      </a>
+    </div>
+
+    <!-- Vertical Social Links (Bottom Left of content area, aligned with bottom of CV button) -->
+    <div class="flex flex-row justify-center gap-5 mt-8 z-20 no-print pointer-events-auto lg:absolute lg:bottom-0 lg:left-8 lg:flex-col lg:gap-4.5 lg:mt-0">
+      <!-- LinkedIn -->
+      <a 
+        href={personal.urls.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn Profile"
+        class="group relative text-slate-500 hover:text-violet-600 dark:text-slate-400 dark:hover:text-violet-400 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-violet-500 rounded p-1 block"
+      >
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+          <rect x="2" y="9" width="4" height="12"></rect>
+          <circle cx="4" cy="4" r="2"></circle>
+        </svg>
+        <!-- Tooltip -->
+        <span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 lg:bottom-auto lg:left-full lg:translate-x-0 lg:top-1/2 lg:-translate-y-1/2 lg:mb-0 lg:ml-3 px-2.5 py-1 text-[11px] font-semibold text-slate-700 dark:text-slate-200 bg-white/95 dark:bg-slate-900/95 border border-slate-200/80 dark:border-slate-800/80 rounded-lg opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 pointer-events-none transition-all duration-200 backdrop-blur-md shadow-sm whitespace-nowrap z-30">
+          LinkedIn
+        </span>
+      </a>
+
+      <!-- Google Scholar -->
+      <a 
+        href={personal.urls.googleScholar}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Google Scholar Profile"
+        class="group relative text-slate-500 hover:text-violet-600 dark:text-slate-400 dark:hover:text-violet-400 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-violet-500 rounded p-1 block"
+      >
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+          <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path>
+        </svg>
+        <!-- Tooltip -->
+        <span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 lg:bottom-auto lg:left-full lg:translate-x-0 lg:top-1/2 lg:-translate-y-1/2 lg:mb-0 lg:ml-3 px-2.5 py-1 text-[11px] font-semibold text-slate-700 dark:text-slate-200 bg-white/95 dark:bg-slate-900/95 border border-slate-200/80 dark:border-slate-800/80 rounded-lg opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 pointer-events-none transition-all duration-200 backdrop-blur-md shadow-sm whitespace-nowrap z-30">
+          Google Scholar
+        </span>
+      </a>
+
+      <!-- DBLP -->
+      <a 
+        href={personal.urls.dblp}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="DBLP Profile"
+        class="group relative text-slate-500 hover:text-violet-600 dark:text-slate-400 dark:hover:text-violet-400 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-violet-500 rounded p-1 block"
+      >
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+        </svg>
+        <!-- Tooltip -->
+        <span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 lg:bottom-auto lg:left-full lg:translate-x-0 lg:top-1/2 lg:-translate-y-1/2 lg:mb-0 lg:ml-3 px-2.5 py-1 text-[11px] font-semibold text-slate-700 dark:text-slate-200 bg-white/95 dark:bg-slate-900/95 border border-slate-200/80 dark:border-slate-800/80 rounded-lg opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 pointer-events-none transition-all duration-200 backdrop-blur-md shadow-sm whitespace-nowrap z-30">
+          DBLP
+        </span>
+      </a>
+
+      <!-- ORCID -->
+      <a 
+        href={personal.urls.orcid}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="ORCID Profile"
+        class="group relative text-slate-500 hover:text-violet-600 dark:text-slate-400 dark:hover:text-violet-400 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-violet-500 rounded p-1 block"
+      >
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="9" y1="8" x2="9" y2="16"></line>
+          <circle cx="12" cy="8" r="0.5"></circle>
+          <path d="M12 10v6h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-2z"></path>
+        </svg>
+        <!-- Tooltip -->
+        <span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 lg:bottom-auto lg:left-full lg:translate-x-0 lg:top-1/2 lg:-translate-y-1/2 lg:mb-0 lg:ml-3 px-2.5 py-1 text-[11px] font-semibold text-slate-700 dark:text-slate-200 bg-white/95 dark:bg-slate-900/95 border border-slate-200/80 dark:border-slate-800/80 rounded-lg opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 pointer-events-none transition-all duration-200 backdrop-blur-md shadow-sm whitespace-nowrap z-30">
+          ORCID
+        </span>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Bouncing arrow scroll down indicator (Anchored to bottom of viewport) -->
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex justify-center animate-bounce z-20 no-print">
+    <a href="#about" aria-label="Scroll down to About section" class="text-slate-500 hover:text-white p-2 focus:outline-none focus:ring-2 focus:ring-violet-500 rounded-full block">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<!-- Typewriter animation script -->
+<script>
+  const words = ["cryptography.", "cybersecurity.", "medical device security."];
+  let wordIdx = 0;
+  let charIdx = 0;
+  let isDeleting = false;
+  const typeSpeed = 120;
+  const backspaceSpeed = 60;
+  const delay = 2000;
+  
+  const textEl = document.querySelector('[data-typewriter]');
+  
+  function type() {
+    if (!textEl) return;
+    const currentWord = words[wordIdx];
+    
+    if (isDeleting) {
+      textEl.textContent = currentWord.substring(0, charIdx - 1);
+      charIdx--;
+    } else {
+      textEl.textContent = currentWord.substring(0, charIdx + 1);
+      charIdx++;
+    }
+    
+    let timer = isDeleting ? backspaceSpeed : typeSpeed;
+    
+    if (!isDeleting && charIdx === currentWord.length) {
+      isDeleting = true;
+      timer = delay;
+    } else if (isDeleting && charIdx === 0) {
+      isDeleting = false;
+      wordIdx = (wordIdx + 1) % words.length;
+      timer = 500;
+    }
+    
+    setTimeout(type, timer);
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(type, 800);
+  });
+</script>
