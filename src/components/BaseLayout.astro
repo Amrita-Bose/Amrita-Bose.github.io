@@ -36,10 +36,13 @@ const {
         const stored = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         const isDark = stored === 'dark' || (!stored && (stored !== 'light' && prefersDark));
+        const html = document.documentElement;
         if (isDark) {
-          document.documentElement.classList.add('dark');
+          html.classList.add('dark');
+          html.style.colorScheme = 'dark';
         } else {
-          document.documentElement.classList.remove('dark');
+          html.classList.remove('dark');
+          html.style.colorScheme = 'light';
         }
       } catch (_) {}
     })();
