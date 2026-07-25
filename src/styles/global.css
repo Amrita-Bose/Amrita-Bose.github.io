@@ -178,6 +178,17 @@
   }
 }
 
+/* Disable transitions during theme toggle to prevent iOS WebKit rendering freezes */
+html.theme-switching,
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
+}
+
 /* Hide native viewport scrollbar globally (since we use a custom floating scrollbar!) */
 html::-webkit-scrollbar {
   display: none !important;
